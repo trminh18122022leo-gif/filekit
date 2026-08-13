@@ -1,0 +1,35 @@
+fastapi>=0.109.0
+uvicorn[standard]>=0.27.0
+python-multipart==0.0.9
+aiofiles==23.2.1
+python-dotenv==1.0.0
+
+# PDF — version tối thiểu, để pip tự chọn bản có wheel cho Python hiện tại
+pikepdf>=10.0.0
+PyMuPDF>=1.26.0
+reportlab==4.1.0
+pypdf==4.0.0
+pdfplumber==0.10.3
+pdf2docx==0.5.7
+img2pdf==0.5.1
+
+# Office
+python-docx==1.1.0
+openpyxl==3.1.2
+python-pptx==0.6.23
+
+# Image
+Pillow>=11.0.0
+qrcode[pil]==7.4.2
+
+# AI & APIs — Gemini Flash (free tier thật) thay cho Anthropic (chỉ có $5 credit dùng thử)
+google-genai>=0.3.0
+deepl==1.17.0
+requests==2.31.0
+
+# Storage
+supabase==2.10.0
+httpx>=0.27.0
+
+# Font
+fonttools==4.47.2
