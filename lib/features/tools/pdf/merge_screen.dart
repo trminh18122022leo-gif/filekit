@@ -17,7 +17,7 @@ class _State extends State<MergeScreen> {
   double _progress = 0;
 
   Future<void> _pick() async {
-    final r = await FilePicker.platform.pickFiles(
+    final r = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
       allowMultiple: true,

@@ -35,7 +35,7 @@ class _SingleFileToolScaffoldState extends State<SingleFileToolScaffold> {
   bool _loading = false;
 
   Future<void> _pick() async {
-    final r = await FilePicker.platform.pickFiles(
+    final r = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: widget.allowedExtensions,
       withData: true,
