@@ -1,59 +1,59 @@
 workflows:
 
   # ── iOS: chỉ build khi tag ─────────────────────────────────────────────────
-  ios-release:
-    name: iOS Release (TestFlight)
-    max_build_duration: 60
+  # ios-release:
+  #   name: iOS Release (TestFlight)
+  #   max_build_duration: 60
 
-    environment:
-      flutter: 3.19.0
-      xcode: 15.3
-      cocoapods: default
-      groups:
-        - apple_credentials       # tạo trong Codemagic → Teams → Environment variables
-      vars:
-        BUNDLE_ID: "com.ijin.filekit_pro"
-      ios_signing:
-        distribution_type: app_store
-        bundle_identifier: com.yourname.filekitpro
+  #   environment:
+  #     flutter: 3.19.0
+  #     xcode: 15.3
+  #     cocoapods: default
+  #     groups:
+  #       - apple_credentials       # tạo trong Codemagic → Teams → Environment variables
+  #     vars:
+  #       BUNDLE_ID: "com.ijin.filekit_pro"
+  #     ios_signing:
+  #       distribution_type: app_store
+  #       bundle_identifier: com.yourname.filekitpro
 
-    triggering:
-      events:
-        - tag
-      tag_patterns:
-        - pattern: 'v*'
-          include: true
-      cancel_previous_builds: true
+  #   triggering:
+  #     events:
+  #       - tag
+  #     tag_patterns:
+  #       - pattern: 'v*'
+  #         include: true
+  #     cancel_previous_builds: true
 
-    scripts:
-      - name: Flutter pub get
-        script: flutter packages pub get
+  #   scripts:
+  #     - name: Flutter pub get
+  #       script: flutter packages pub get
 
-      - name: Pod install
-        script: find . -name "Podfile" -execdir pod install \;
+  #     - name: Pod install
+  #       script: find . -name "Podfile" -execdir pod install \;
 
-      - name: Build IPA
-        script: |
-          flutter build ipa \
-            --release \
-            --export-options-plist=/Users/builder/export_options.plist \
-            --dart-define=API_URL=$API_URL
+  #     - name: Build IPA
+  #       script: |
+  #         flutter build ipa \
+  #           --release \
+  #           --export-options-plist=/Users/builder/export_options.plist \
+  #           --dart-define=API_URL=$API_URL
 
-    artifacts:
-      - build/ios/ipa/*.ipa
+  #   artifacts:
+  #     - build/ios/ipa/*.ipa
 
-    publishing:
-      app_store_connect:
-        api_key:   $APP_STORE_CONNECT_PRIVATE_KEY
-        key_id:    $APP_STORE_CONNECT_KEY_IDENTIFIER
-        issuer_id: $APP_STORE_CONNECT_ISSUER_ID
-        submit_to_testflight: true
-      email:
-        recipients:
-          - your@email.com
-        notify:
-          success: true
-          failure: true
+  #   publishing:
+  #     app_store_connect:
+  #       api_key:   $APP_STORE_CONNECT_PRIVATE_KEY
+  #       key_id:    $APP_STORE_CONNECT_KEY_IDENTIFIER
+  #       issuer_id: $APP_STORE_CONNECT_ISSUER_ID
+  #       submit_to_testflight: true
+  #     email:
+  #       recipients:
+  #         - your@email.com
+  #       notify:
+  #         success: true
+  #         failure: true
 
   # ── Android: build khi tag ─────────────────────────────────────────────────
   android-release:
