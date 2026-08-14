@@ -17,7 +17,7 @@ class _AiSummarizeScreenState extends State<AiSummarizeScreen> {
   String? _summary;
 
   Future<void> _pick() async {
-    final r = await FilePicker.pickFiles(
+    final r = await FilePicker.platform.pickFiles(
         type: FileType.custom, allowedExtensions: ['pdf'], withData: true);
     if (r != null) {
       setState(() {
